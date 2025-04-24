@@ -5,25 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7290caf6-9c2f-41de-ba56-2ccb59443899" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/04.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/archiv.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../test/archiv.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/out/test/test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../test/out/test/test/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/out/test/test/archiv.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../test/out/test/test/archiv.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/out/test/test/handler/TaskHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/out/test/test/tasks/AbstractTask.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/out/test/test/tasks/RecurringTask.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/out/test/test/tasks/SimpleTask.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/out/test/test/tasks/TaskIdGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/handler/TaskHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/tasks/AbstractTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/tasks/RecurringTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/tasks/SimpleTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/tasks/TaskIdGenerator.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/.idea/semestralne.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/company/InsuranceCompany.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/contracts/AbstractContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/contracts/AbstractVehicleContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/contracts/InvalidContractException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/contracts/MasterVehicleContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/contracts/SingleVehicleContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/contracts/TravelContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/objects/LegalForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/objects/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/objects/Vehicle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/payment/ContractPaymentData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/payment/PaymentHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/payment/PaymentInstance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../semestralne/src/payment/PremiumPaymentFrequency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,6 +129,7 @@
       <workItem from="1744393525900" duration="53000" />
       <workItem from="1744393584672" duration="5259000" />
       <workItem from="1744573479110" duration="73000" />
+      <workItem from="1745528038491" duration="83000" />
     </task>
     <servers />
   </component>

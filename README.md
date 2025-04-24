@@ -1,4 +1,4 @@
-# Object Orinted Programming
+# UML diagram
 
 ` - ` - private
 
@@ -8,8 +8,12 @@
 
 _run()_: void - abstract
 
-NectIdGenerator() - constructor
+NextIdGenerator() - constructor
 
 <ins>nextId: int=0</ins> - static
 
 <ins>MAXIMUM_TASKS: int=5</ins> - static final
+
+` ---------> ` - extends
+
+` - - - - - > ` - implements
