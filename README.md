@@ -14,6 +14,6 @@ NextIdGenerator() - constructor
 
 <ins>MAXIMUM_TASKS: int=5</ins> - static final
 
-` ---------> ` - extends
+` ---------|> ` - extends
 
-` - - - - - > ` - implements
+` - - - - - |> ` - implements

@@ -1,6 +1,16 @@
 package company;
-package payment;
-package contracts;
+
+import contracts.AbstractContract;
+import contracts.MasterVehicleContract;
+import contracts.SingleVehicleContract;
+import contracts.TravelContract;
+import objects.Person;
+import objects.Vehicle;
+import payment.PaymentHandler;
+import payment.PremiumPaymentFrequency;
+
+import java.time.LocalDateTime;
+import java.util.Set;
 
 public class InsuranceCompany {
     private Set<AbstractContract> contracts;
@@ -19,7 +29,7 @@ public class InsuranceCompany {
         this.currentTime = currentTime;
     }
 
-    public Set<AbstractContracts> getContracts() {
+    public Set<AbstractContract> getContracts() {
         return contracts;
     }
 
@@ -27,7 +37,7 @@ public class InsuranceCompany {
         return handler;
     }
 
-    public SingleVehicleContract insureVehicle(String contractNumber, Person beneficiary, Person policyHolder, int proposedPremium, PremmiumPaymentFrequency proposedPaymentFrequency, Vehicle vehicleToInsure) {
+    public SingleVehicleContract insureVehicle(String contractNumber, Person beneficiary, Person policyHolder, int proposedPremium, PremiumPaymentFrequency proposedPaymentFrequency, Vehicle vehicleToInsure) {
         //toDo
         return null;
     }

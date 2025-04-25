@@ -1,10 +1,15 @@
 package payment;
 
-public class PaymentInstance extends interface Comparable<PaymentInstance> {
-    private LocalDateTime paymentTime;
-    private int paymentAmount;
+import java.time.LocalDateTime;
+
+public class PaymentInstance implements Comparable<PaymentInstance> {
+    private final LocalDateTime paymentTime;
+    private final int paymentAmount;
 
     public PaymentInstance(LocalDateTime paymentTime, int paymentAmount) {
+        if (paymentTime == null) throw new IllegalArgumentException("Payment time cannot be null");
+        if (paymentAmount <= 0) throw new IllegalArgumentException("Payment amount cannot be less than 0");
+
         this.paymentTime = paymentTime;
         this.paymentAmount = paymentAmount;
     }
@@ -13,7 +18,12 @@ public class PaymentInstance extends interface Comparable<PaymentInstance> {
         return paymentTime;
     }
 
-    public void getPaymentAmount() {
+    public int getPaymentAmount() {
         return paymentAmount;
+    }
+
+    @Override
+    public int compareTo(PaymentInstance other) {
+        return this.paymentTime.compareTo(other.paymentTime);
     }
 }
