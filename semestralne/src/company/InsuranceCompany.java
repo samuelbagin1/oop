@@ -13,30 +13,41 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class InsuranceCompany {
-    private Set<AbstractContract> contracts;
-    private PaymentHandler handler;
+    private final Set<AbstractContract> contracts;
+    private final PaymentHandler handler;
     private LocalDateTime currentTime;
 
     public InsuranceCompany(LocalDateTime currentTime) {
+        if (currentTime==null) throw new IllegalArgumentException("currentTime is null");
 
+        this.currentTime = currentTime;
+        this.contracts = new java.util.HashSet<>();
+        handler=new PaymentHandler(this);
     }
 
+
+    // GETTERY
     public LocalDateTime getCurrentTime() {
         return currentTime;
     }
-
-    public void setCurrentTime(LocalDateTime currentTime) {
-        this.currentTime = currentTime;
-    }
-
     public Set<AbstractContract> getContracts() {
         return contracts;
     }
-
     public PaymentHandler getHandler() {
         return handler;
     }
 
+
+    // STTERY
+    public void setCurrentTime(LocalDateTime currentTime) {
+        if (currentTime==null) throw new IllegalArgumentException("currentTime is null");
+        this.currentTime = currentTime;
+    }
+
+
+
+
+    // METODY
     public SingleVehicleContract insureVehicle(String contractNumber, Person beneficiary, Person policyHolder, int proposedPremium, PremiumPaymentFrequency proposedPaymentFrequency, Vehicle vehicleToInsure) {
         //toDo
         return null;

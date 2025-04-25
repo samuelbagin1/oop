@@ -6,23 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7290caf6-9c2f-41de-ba56-2ccb59443899" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/.idea/semestralne.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/.idea/semestralne.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../semestralne/src/company/InsuranceCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/company/InsuranceCompany.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/contracts/AbstractContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/contracts/AbstractContract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/contracts/AbstractVehicleContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/contracts/AbstractVehicleContract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/contracts/InvalidContractException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/contracts/InvalidContractException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/contracts/MasterVehicleContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/contracts/MasterVehicleContract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/contracts/SingleVehicleContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/contracts/SingleVehicleContract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/contracts/TravelContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/contracts/TravelContract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/objects/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/objects/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/objects/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/objects/Vehicle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/payment/ContractPaymentData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/payment/ContractPaymentData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/payment/PaymentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/payment/PaymentHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/payment/PaymentInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/payment/PaymentInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/payment/PremiumPaymentFrequency.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/payment/PremiumPaymentFrequency.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +112,7 @@
       <workItem from="1744573479110" duration="73000" />
       <workItem from="1745528038491" duration="83000" />
       <workItem from="1745573851390" duration="789000" />
-      <workItem from="1745574664264" duration="613000" />
+      <workItem from="1745574664264" duration="1212000" />
     </task>
     <servers />
   </component>
