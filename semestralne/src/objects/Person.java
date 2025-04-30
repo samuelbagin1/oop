@@ -7,6 +7,7 @@ import objects.LegalForm;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Person {
@@ -22,18 +23,13 @@ public class Person {
         if (id == null || id.isEmpty()) throw new IllegalArgumentException("ID cannot be null or empty");
 
         // kontrola rodneho cisla
-        if (id.length()==10 || id.length()==9) {
-            if (isValidBirthNumber(id)) {
-                this.legalForm=LegalForm.NATURAL;
-                this.id=id;
-            }
+        if ((id.length()==10 || id.length()==9) && isValidBirthNumber(id)) {
+            this.legalForm=LegalForm.NATURAL;
+
 
         // kontrola ICO
-        } else if (id.length()==6 || id.length()==8) {
-            if (isValidRegistrationNumber(id)) {
-                this.legalForm=LegalForm.LEGAL;
-                this.id=id;
-            }
+        } else if ((id.length()==6 || id.length()==8) && isValidRegistrationNumber(id)) {
+            this.legalForm=LegalForm.LEGAL;
 
         // ak nieje ID validne
         } else {
@@ -41,8 +37,9 @@ public class Person {
         }
 
 
+        this.id=id;
         this.paidOutAmount=0;
-        this.contracts=new HashSet<AbstractContract>();
+        this.contracts=new LinkedHashSet<AbstractContract>();
     }
 
 

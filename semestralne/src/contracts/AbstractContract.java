@@ -6,10 +6,10 @@ import objects.Person;
 
 public abstract class AbstractContract {
     private final String contractNumber;
-    protected final InsuranceCompany insurer;
-    protected final Person policyHolder;
+    protected final InsuranceCompany insurer;   // poistovatel
+    protected final Person policyHolder;        // poistnik
     protected final ContractPaymentData contractPaymentData;
-    protected int coverageAmount;
+    protected int coverageAmount;              // poistne plnenie
     protected boolean isActive;
 
 

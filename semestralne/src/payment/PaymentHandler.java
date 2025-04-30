@@ -73,8 +73,9 @@ public class PaymentHandler {
     }
 
     public void pay(AbstractContract contract, int amount) {
-        if (contract==null || contract.isActive()==false) throw new IllegalArgumentException("Contract cannot be null");
+        if (contract==null || !contract.isActive()) throw new IllegalArgumentException("Contract cannot be null");
         if (amount<=0) throw new IllegalArgumentException("Amount cannot be less than 0");
+        if (contract.getInsurer()!=insurer) throw new InvalidContractException("Contract does not belong to this insurance company");
 
 
         if (!paymentHistory.containsKey(contract)) {
