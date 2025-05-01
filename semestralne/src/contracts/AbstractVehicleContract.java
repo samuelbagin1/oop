@@ -5,7 +5,7 @@ import objects.Person;
 import payment.ContractPaymentData;
 
 public abstract class AbstractVehicleContract extends AbstractContract {
-    protected Person beneficiary;
+    protected Person beneficiary;   // opravnena osoba
 
     public AbstractVehicleContract(String contractNumber, InsuranceCompany insurer, Person beneficiary, Person policyHolder, ContractPaymentData contractPaymentData, int coverageAmount) {
         super(contractNumber, insurer, policyHolder, contractPaymentData, coverageAmount);

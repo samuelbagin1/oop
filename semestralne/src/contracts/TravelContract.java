@@ -12,10 +12,11 @@ public class TravelContract extends AbstractContract {
 
     public TravelContract(String contractNumber, InsuranceCompany insurer, Person policyHolder, ContractPaymentData contractPaymentData, int coverageAmount, Set<Person> personsToInsure) {
         super(contractNumber, insurer, policyHolder, contractPaymentData, coverageAmount);
+        if (contractPaymentData==null) throw new IllegalArgumentException("contractPaymentData is null");
         if (personsToInsure==null || personsToInsure.isEmpty()) throw new IllegalArgumentException("personsToInsure is null or empty");
 
         for (Person person : personsToInsure) {
-            if (person.getLegalForm()!= LegalForm.NATURAL) throw new IllegalArgumentException("personsToInsure is not a NATURAL person");
+            if (person.getLegalForm()!= LegalForm.NATURAL) throw new IllegalArgumentException("Person is not a NATURAL person");
         }
 
         insuredPersons = personsToInsure;

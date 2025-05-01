@@ -3,7 +3,7 @@ import contracts.SingleVehicleContract;
 
 public class Vehicle {
     private final String licensePlate;
-    private final int originalValue;
+    private final int originalValue;    // hodnota vozidla
 
     public Vehicle(String licensePlate, int originalValue) {
         if (licensePlate == null || licensePlate.isEmpty() || licensePlate.length()!=7) throw new IllegalArgumentException("License plate cannot be null or empty");

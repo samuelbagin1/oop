@@ -13,7 +13,7 @@ import java.util.Set;
 public class Person {
     private final String id;
     private final LegalForm legalForm;
-    private int paidOutAmount;
+    private int paidOutAmount;      // vyplatena suma
     private final Set<AbstractContract> contracts;
 
 
@@ -23,12 +23,11 @@ public class Person {
         if (id == null || id.isEmpty()) throw new IllegalArgumentException("ID cannot be null or empty");
 
         // kontrola rodneho cisla
-        if ((id.length()==10 || id.length()==9) && isValidBirthNumber(id)) {
+        if (isValidBirthNumber(id)) {
             this.legalForm=LegalForm.NATURAL;
 
-
         // kontrola ICO
-        } else if ((id.length()==6 || id.length()==8) && isValidRegistrationNumber(id)) {
+        } else if (isValidRegistrationNumber(id)) {
             this.legalForm=LegalForm.LEGAL;
 
         // ak nieje ID validne
@@ -43,11 +42,16 @@ public class Person {
     }
 
 
+
+
     // kontrola rodneho cisla
     public static boolean isValidBirthNumber(String birthNumber) {
+        if (birthNumber==null || birthNumber.isEmpty()) return false;
+        if (birthNumber.length()!=9 && birthNumber.length()!=10) return false;
+
         // ak nie je cislica dovidenia
         for (int i=0; i<birthNumber.length(); i++) {
-            if (birthNumber.charAt(i)<'0' || birthNumber.charAt(i)>'9') return false;
+            if (!Character.isDigit(birthNumber.charAt(i))) return false;
         }
 
         // pomocne premenne
@@ -55,10 +59,18 @@ public class Person {
         int year = Integer.parseInt(birthNumber.substring(0, 2));
         int day = Integer.parseInt(birthNumber.substring(4, 6));
 
+
         // podmienky
-        if (!(month>=1 && month<=12) && !(month>=51 && month<=62) ) return false;
+        if (month>50) month-=50;
+        if (month<1 || month>12) return false;
         if (birthNumber.length()==9 && year>53) return false;
-        if (birthNumber.length()==9 && year<=53) month-=50;
+
+//        if (birthNumber.length()==9) {
+//            if (year>53) return false;
+//            year+=1900;
+//        } else {
+//            year+=year<54 ? 2000 : 1900;
+//        }
 
         // checknem ci je rok validny
         try {
@@ -73,7 +85,7 @@ public class Person {
         // kontrolna suma pre roky po 1954 vratane
         if (birthNumber.length()==10 && year>=1954) {
             int sum=0;
-            for (int i=0; i<birthNumber.length(); i++) sum+=(-1)^i*Integer.parseInt(birthNumber.substring(i, i+1));
+            for (int i=0; i<birthNumber.length(); i++) sum+=(i%2==0 ? 1 : -1)*Character.getNumericValue(birthNumber.charAt(i));
 
             if (sum%11!=0) return false;
         }
@@ -84,9 +96,12 @@ public class Person {
 
     // kontrola ICO
     public static boolean isValidRegistrationNumber(String registrationNumber) {
+        if (registrationNumber==null || registrationNumber.isEmpty()) return false;
+        if (registrationNumber.length()!=6 && registrationNumber.length()!=8) return false;
+
         // ak nie je cislica dovidenia
         for (int i=0; i<registrationNumber.length(); i++) {
-            if (registrationNumber.charAt(i)<'0' || registrationNumber.charAt(i)>'9') return false;
+            if (!Character.isDigit(registrationNumber.charAt(i))) return false;
         }
 
         return true;

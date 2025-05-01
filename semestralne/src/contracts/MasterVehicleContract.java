@@ -4,27 +4,22 @@ import company.InsuranceCompany;
 import objects.LegalForm;
 import objects.Person;
 
+import javax.management.DescriptorKey;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class MasterVehicleContract extends AbstractVehicleContract{
     private final Set<SingleVehicleContract> childContracts;
 
-    // Zmluvy vozidiel sa do MasterVehicleContract pridávajú podaním požiadavky na poisťovateľa, tzn. zavolá
-    //sa metóda InsuranceCompany::moveSingleVehicleContractToMasterVehicleContract.
-    //MasterVehicleContract sa považuje za neaktívny, ak sú neaktívne všetky jeho dcérske zmluvy. Ak žiadne
-    //dcérske zmluvy nemá, tak sa jeho aktivita vyhodnocuje podľa atribútu isActive. Metóda setInactive musí
-    //nastaviť ako neaktívne všetky jeho dcérske zmluvy, aj svoj atribút isActive.
 
     public MasterVehicleContract(String contractNumber, InsuranceCompany insurer, Person beneficiary, Person policyHolder) {
         super(contractNumber, insurer, beneficiary, policyHolder, null, 0);
 
-        // nvm ktore
-        if (super.getPolicyHolder().getLegalForm()!=LegalForm.LEGAL) throw new IllegalArgumentException("Legal form does not match");
-        if (policyHolder.getLegalForm()!= LegalForm.LEGAL) throw new IllegalArgumentException();
+        if (policyHolder.getLegalForm()!= LegalForm.LEGAL) throw new IllegalArgumentException("Legal form does not match");
 
-        childContracts = new HashSet<SingleVehicleContract>();
+        childContracts = new LinkedHashSet<SingleVehicleContract>();
     }
 
     public Set<SingleVehicleContract> getChildContracts() {
@@ -32,8 +27,35 @@ public class MasterVehicleContract extends AbstractVehicleContract{
     }
 
     public void requestAdditionOfChildContract(SingleVehicleContract contract) {
-        LocalDateTime currentTime = insurer.getCurrentTime();
-        InsuranceCompany insurer1 = new InsuranceCompany(currentTime);
-        insurer1.moveSingleVehicleContractToMasterVehicleContract(this, contract);
+        insurer.moveSingleVehicleContractToMasterVehicleContract(this, contract);
+    }
+
+    @Override
+    public boolean isActive() {
+        if (childContracts.isEmpty()) {
+            return super.isActive();
+        }
+
+        // ak je jeden contract aktivny, tak vrati true
+        for (SingleVehicleContract contract : childContracts) {
+            if (contract.isActive()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public void setInactive() {
+        super.setInactive();
+        for (SingleVehicleContract contract : childContracts) {
+            contract.setInactive();
+        }
+    }
+
+    @Override
+    public void pay(int amount) {
+        insurer.getHandler().pay(this, amount);
     }
 }
