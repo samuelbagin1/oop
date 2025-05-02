@@ -1,12 +1,8 @@
 package objects;
 import contracts.AbstractContract;
-import contracts.TravelContract;
-import contracts.AbstractVehicleContract;
-import objects.LegalForm;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -38,7 +34,7 @@ public class Person {
 
         this.id=id;
         this.paidOutAmount=0;
-        this.contracts=new LinkedHashSet<AbstractContract>();
+        this.contracts=new LinkedHashSet<>();
     }
 
 
@@ -63,19 +59,19 @@ public class Person {
         // podmienky
         if (month>50) month-=50;
         if (month<1 || month>12) return false;
-        if (birthNumber.length()==9 && year>53) return false;
+        //if (birthNumber.length()==9 && year>53) return false;
 
-//        if (birthNumber.length()==9) {
-//            if (year>53) return false;
-//            year+=1900;
-//        } else {
-//            year+=year<54 ? 2000 : 1900;
-//        }
+        if (birthNumber.length()==9) {
+            if (year>53) return false;
+            year+=1900;
+        } else {
+            year+=year<54 ? 2000 : 1900;
+        }
 
         // checknem ci je rok validny
         try {
-            year+=birthNumber.length()==10 ? 2000 : 1900;
-            if (year>LocalDate.now().getYear()) year-=100;
+//            year+=birthNumber.length()==10 ? 2000 : 1900;
+//            if (year>LocalDate.now().getYear()) year-=100;
             LocalDate.of(year, month, day);
         } catch (DateTimeException e) {
             return false;

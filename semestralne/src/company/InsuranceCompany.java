@@ -50,7 +50,8 @@ public class InsuranceCompany {
 
 
 
-    // METODY
+    // ----------------------- METODY ----------------------- //
+    // INSURE
     public SingleVehicleContract insureVehicle(String contractNumber, Person beneficiary, Person policyHolder, int proposedPremium, PremiumPaymentFrequency proposedPaymentFrequency, Vehicle vehicleToInsure) {
         for (AbstractContract contract : contracts) {   // check ci existuje s rovnakym cislom
             if (contract.getContractNumber().equals(contractNumber)) {
@@ -72,7 +73,6 @@ public class InsuranceCompany {
 
         return contract;
     }
-
 
 
     public TravelContract insurePersons(String contractNumber, Person policyHolder, int proposedPremium, PremiumPaymentFrequency proposedPaymentFrequency, Set<Person> personsToInsure) {
@@ -99,7 +99,7 @@ public class InsuranceCompany {
     }
 
 
-
+    // CONTRACT MANIPULATION
     public MasterVehicleContract createMasterVehicleContract(String contractNumber, Person beneficiary, Person policyHolder) {
         for (AbstractContract contract : contracts) {
             if (contract.getContractNumber().equals(contractNumber)) {
@@ -114,7 +114,6 @@ public class InsuranceCompany {
 
         return masterVehicleContract;
     }
-
 
 
     public void moveSingleVehicleContractToMasterVehicleContract(MasterVehicleContract masterVehicleContract, SingleVehicleContract singleVehicleContract) {
@@ -135,11 +134,11 @@ public class InsuranceCompany {
 
 
 
-
+    // CHARGING PREMIUMS
     public void chargePremiumsOnContracts() {
         for (AbstractContract contract : contracts) {
             if (contract.isActive()) {
-                chargePremiumOnContract(contract);
+                contract.updateBalance();
             }
         }
     }
@@ -153,12 +152,10 @@ public class InsuranceCompany {
     }
 
     public void chargePremiumOnContract(AbstractContract contract) {
-        // Skip contracts without payment data (like MasterVehicleContract)
-        if (contract.getContractPaymentData() == null) {
-            return;
-        }
+        // skipnu sa contracty ak su paymentData null, ako masterVehicleContract
+        if (contract.getContractPaymentData()==null) return;
 
-        while (!currentTime.isBefore(contract.getContractPaymentData().getNextPaymentTime()) || currentTime.isEqual(contract.getContractPaymentData().getNextPaymentTime())) {
+        while (currentTime.isAfter(contract.getContractPaymentData().getNextPaymentTime()) || currentTime.isEqual(contract.getContractPaymentData().getNextPaymentTime())) {
             contract.getContractPaymentData().setOutstandingBalance(contract.getContractPaymentData().getOutstandingBalance()+contract.getContractPaymentData().getPremium());
             contract.getContractPaymentData().updateNextPaymentTime();
         }
@@ -167,6 +164,7 @@ public class InsuranceCompany {
 
 
 
+    // CLAIM PROCESS
     public void processClaim(TravelContract travelContract, Set<Person> affectedPersons) {
         if (travelContract==null) throw new IllegalArgumentException("travelContract is null");
         if (affectedPersons==null || affectedPersons.isEmpty()) throw new IllegalArgumentException("affectedPersons is null or empty");
@@ -204,4 +202,6 @@ public class InsuranceCompany {
             singleVehicleContract.setInactive();
         }
     }
+
+
 }

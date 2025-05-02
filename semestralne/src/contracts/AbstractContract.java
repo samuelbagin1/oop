@@ -1,7 +1,6 @@
 package contracts;
 import company.InsuranceCompany;
 import payment.ContractPaymentData;
-import payment.PaymentHandler;
 import objects.Person;
 import java.util.Objects;
 
@@ -54,7 +53,7 @@ public abstract class AbstractContract {
         isActive = false;
     }
     public void setCoverageAmount(int coverageAmount) {
-        if (coverageAmount<=0) throw new IllegalArgumentException("Coverage amount cannot be less than 0");
+        if (coverageAmount<0) throw new IllegalArgumentException("Coverage amount cannot be less than 0");
         this.coverageAmount = coverageAmount;
     }
 

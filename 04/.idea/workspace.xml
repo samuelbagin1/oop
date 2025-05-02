@@ -6,17 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="7290caf6-9c2f-41de-ba56-2ccb59443899" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/.idea/semestralne.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/.idea/semestralne.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../semestralne/out/production/semestralne/company/InsuranceCompany.class" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/out/production/semestralne/company/InsuranceCompany.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../semestralne/out/production/semestralne/contracts/AbstractContract.class" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/out/production/semestralne/contracts/AbstractContract.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../semestralne/out/production/semestralne/contracts/AbstractVehicleContract.class" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/out/production/semestralne/contracts/AbstractVehicleContract.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../semestralne/out/production/semestralne/contracts/MasterVehicleContract.class" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/out/production/semestralne/contracts/MasterVehicleContract.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../semestralne/out/production/semestralne/objects/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/out/production/semestralne/objects/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../semestralne/out/production/semestralne/objects/Vehicle.class" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/out/production/semestralne/objects/Vehicle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../semestralne/src/company/InsuranceCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/company/InsuranceCompany.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../semestralne/src/contracts/AbstractContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/contracts/AbstractContract.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../semestralne/src/contracts/AbstractVehicleContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/contracts/AbstractVehicleContract.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../semestralne/src/contracts/MasterVehicleContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/contracts/MasterVehicleContract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/contracts/SingleVehicleContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/contracts/SingleVehicleContract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/contracts/TravelContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/contracts/TravelContract.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../semestralne/src/objects/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/objects/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../semestralne/src/objects/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/objects/Vehicle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/payment/ContractPaymentData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/payment/ContractPaymentData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../semestralne/src/payment/PaymentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../semestralne/src/payment/PaymentHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

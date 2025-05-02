@@ -16,6 +16,7 @@ public abstract class AbstractVehicleContract extends AbstractContract {
     }
 
     public void setBeneficiary(Person beneficiary) {
+        if (beneficiary==policyHolder) throw new IllegalArgumentException("beneficiary is same as policyHolder");
         this.beneficiary = beneficiary;
     }
 
