@@ -16,6 +16,7 @@ public class SingleVehicleContract extends AbstractVehicleContract {
         this.insuredVehicle = vehicleToInsure;
     }
 
+    // GETTER
     public Vehicle getInsuredVehicle() {
         return insuredVehicle;
     }

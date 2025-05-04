@@ -22,6 +22,8 @@ public class TravelContract extends AbstractContract {
         insuredPersons = personsToInsure;
     }
 
+
+    // GETTER
     public Set<Person> getInsuredPersons(){
         return this.insuredPersons;
     }

@@ -59,6 +59,8 @@ public abstract class AbstractContract {
 
 
 
+
+    // METODY
     public void pay(int amount) {
         insurer.getHandler().pay(this, amount);
     }

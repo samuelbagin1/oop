@@ -14,14 +14,16 @@ public class PaymentInstance implements Comparable<PaymentInstance> {
         this.paymentAmount = paymentAmount;
     }
 
+    // GETTERS
     public LocalDateTime getPaymentTime() {
         return paymentTime;
     }
-
     public int getPaymentAmount() {
         return paymentAmount;
     }
 
+
+    // COMPARE
     @Override
     public int compareTo(PaymentInstance other) {
         return this.paymentTime.compareTo(other.paymentTime);

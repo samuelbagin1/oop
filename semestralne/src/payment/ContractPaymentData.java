@@ -28,6 +28,7 @@ public class ContractPaymentData {
     }
 
 
+
     // GETTERY
     public int getPremium() {
         return premium;

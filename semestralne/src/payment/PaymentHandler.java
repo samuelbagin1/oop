@@ -25,7 +25,7 @@ public class PaymentHandler {
         this.paymentHistory = new HashMap<>();
     }
 
-
+    // GET
     public Map<AbstractContract, Set<PaymentInstance>> getPaymentHistory() {
         return paymentHistory;
     }

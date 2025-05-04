@@ -99,6 +99,9 @@ public class InsuranceCompany {
     }
 
 
+
+
+
     // CONTRACT MANIPULATION
     public MasterVehicleContract createMasterVehicleContract(String contractNumber, Person beneficiary, Person policyHolder) {
         for (AbstractContract contract : contracts) {

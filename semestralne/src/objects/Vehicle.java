@@ -4,6 +4,7 @@ public class Vehicle {
     private final String licensePlate;
     private final int originalValue;    // hodnota vozidla
 
+
     public Vehicle(String licensePlate, int originalValue) {
         if (licensePlate == null || licensePlate.isEmpty()) throw new IllegalArgumentException("License plate cannot be null or empty");
         if (licensePlate.length()!=7) throw new IllegalArgumentException("License plate must be 7 characters long");
@@ -23,10 +24,11 @@ public class Vehicle {
         this.originalValue = originalValue;
     }
 
+
+    // GETTER
     public String getLicensePlate() {
         return licensePlate;
     }
-
     public int getOriginalValue() {
         return originalValue;
     }
