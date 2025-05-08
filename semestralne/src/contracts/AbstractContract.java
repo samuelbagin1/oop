@@ -64,7 +64,6 @@ public abstract class AbstractContract {
     public void pay(int amount) {
         insurer.getHandler().pay(this, amount);
     }
-
     public void updateBalance() {
         insurer.chargePremiumOnContract(this);
     }

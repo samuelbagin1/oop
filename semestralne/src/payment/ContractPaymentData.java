@@ -54,7 +54,6 @@ public class ContractPaymentData {
         this.outstandingBalance = outstandingBalance;
     }
     public void setPremiumPaymentFrequency(PremiumPaymentFrequency premiumPaymentFrequency) {
-        // pridat podmienku enumu
         if (premiumPaymentFrequency==null) throw new IllegalArgumentException("Premium payment frequency cannot be null");
         this.premiumPaymentFrequency = premiumPaymentFrequency;
     }

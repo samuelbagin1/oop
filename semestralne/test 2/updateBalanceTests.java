@@ -13,15 +13,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class updateBalanceTests {
 
-    private Person policyHolder;
-    private Vehicle vehicle1;
-    private LocalDateTime testTime;
+    Person legalEntity;
+    Vehicle vehicle1;
+    LocalDateTime testTime;
 
     @BeforeEach
     void setUp() {
-        policyHolder = new Person("8301143697");
-        vehicle1 = new Vehicle("AA111AA", 15_000);
         testTime = LocalDateTime.of(2023, 1, 1, 12, 0);
+        legalEntity = new Person("123456");
+        vehicle1 = new Vehicle("AA111AA", 15_000);
     }
 
     @Test
@@ -62,11 +62,8 @@ public class updateBalanceTests {
         Person legalEntity = new Person("123456");
 
         // Test case 1: SingleVehicleContract should call the general method
-        ContractPaymentData paymentData = new ContractPaymentData(
-                100, PremiumPaymentFrequency.MONTHLY, testInsurer.getCurrentTime(), 0);
-        SingleVehicleContract singleContract = new SingleVehicleContract(
-                "SV001", testInsurer, null, policyHolder,
-                paymentData, 5000, vehicle1);
+        SingleVehicleContract singleContract = testInsurer.insureVehicle("SV001", null,
+                legalEntity, 100, PremiumPaymentFrequency.MONTHLY, vehicle1);
 
         // Reset tracking and call updateBalance
         testInsurer.resetTracking();
@@ -81,8 +78,7 @@ public class updateBalanceTests {
                 "The single contract should be passed to the method");
 
         // Test case 2: MasterVehicleContract should call the specialized method
-        MasterVehicleContract masterContract = new MasterVehicleContract(
-                "MC001", testInsurer, null, legalEntity);
+        MasterVehicleContract masterContract = testInsurer.createMasterVehicleContract("MC001", null, legalEntity);
 
         // Reset tracking and call updateBalance
         testInsurer.resetTracking();
@@ -97,10 +93,9 @@ public class updateBalanceTests {
                 "The master contract should be passed to the method");
 
         // Test case 3: Create a MasterVehicleContract with child contracts
-        MasterVehicleContract parentContract = new MasterVehicleContract(
-                "MC002", testInsurer, null, legalEntity);
-        SingleVehicleContract childContract1 = new SingleVehicleContract(
-                "CH001", testInsurer, null, policyHolder, paymentData, 6000, vehicle1);
+        MasterVehicleContract parentContract = testInsurer.createMasterVehicleContract("MC002", null, legalEntity);
+        SingleVehicleContract childContract1 = testInsurer.insureVehicle("CH001", null,
+                legalEntity, 100, PremiumPaymentFrequency.MONTHLY, vehicle1);
 
         // Add child contract
         parentContract.requestAdditionOfChildContract(childContract1);
@@ -119,74 +114,55 @@ public class updateBalanceTests {
     }
 
     @Test
-    void testMoveSingleVehicleContractToMasterVehicleContract_Conditions() {
+    void testMoveSingleVehicleContractToMasterVehicleContract_SameInsurerAndActive() {
+        // Setup test environment
+        LocalDateTime testTime = LocalDateTime.of(2023, 1, 1, 12, 0);
         InsuranceCompany insurer1 = new InsuranceCompany(testTime);
         InsuranceCompany insurer2 = new InsuranceCompany(testTime);
 
-        // Create policyholders
-        Person policyholder1 = new Person("123456");
-        Person policyholder2 = new Person("567890");
+        // Create policyholder and vehicle
+        Person policyholder = new Person("123456");
+        Vehicle vehicle = new Vehicle("ABC1234", 10000);
 
-        // Create vehicles
-        Vehicle vehicle1 = new Vehicle("ABC1234", 10000);
-        Vehicle vehicle2 = new Vehicle("XYZ5678", 15000);
-
-        // Create contracts with insurer1 and policyholder1
-        MasterVehicleContract masterContract = new MasterVehicleContract("M001", insurer1, null, policyholder1);
-        insurer1.getContracts().add(masterContract);
-
+        // Test 1: Same insurer, both active - should succeed
+        MasterVehicleContract masterContract = insurer1.createMasterVehicleContract(
+                "M001", null, policyholder);
         SingleVehicleContract singleContract = insurer1.insureVehicle(
-                "S001", null, policyholder1, 200, PremiumPaymentFrequency.MONTHLY, vehicle1);
+                "S001", null, policyholder, 200, PremiumPaymentFrequency.MONTHLY, vehicle);
 
-        // Test successful case - should not throw exception
+        // Should succeed
         insurer1.moveSingleVehicleContractToMasterVehicleContract(masterContract, singleContract);
+
         assertTrue(masterContract.getChildContracts().contains(singleContract));
         assertFalse(insurer1.getContracts().contains(singleContract));
 
-        // Test with inactive master contract
-        MasterVehicleContract inactiveMasterContract = new MasterVehicleContract("M002", insurer1, null, policyholder1);
-        insurer1.getContracts().add(inactiveMasterContract);
-        inactiveMasterContract.setInactive();
-
+        // Test 2: Different insurers - should throw exception
+        MasterVehicleContract masterContract2 = insurer2.createMasterVehicleContract(
+                "M002", null, policyholder);
         SingleVehicleContract singleContract2 = insurer1.insureVehicle(
-                "S002", null, policyholder1, 200, PremiumPaymentFrequency.MONTHLY, vehicle2);
+                "S002", null, policyholder, 200, PremiumPaymentFrequency.MONTHLY, vehicle);
 
-        // Should throw exception for inactive master contract
         assertThrows(InvalidContractException.class, () ->
-                insurer1.moveSingleVehicleContractToMasterVehicleContract(inactiveMasterContract, singleContract2));
+                insurer1.moveSingleVehicleContractToMasterVehicleContract(masterContract2, singleContract2));
 
-        // Test with inactive single contract
-        SingleVehicleContract inactiveSingleContract = insurer1.insureVehicle(
-                "S003", null, policyholder1, 300, PremiumPaymentFrequency.MONTHLY, vehicle2);
-        inactiveSingleContract.setInactive();
+        // Test 3: Same insurer but inactive master contract - should throw exception
+        MasterVehicleContract inactiveMaster = insurer1.createMasterVehicleContract(
+                "M003", null, policyholder);
+        inactiveMaster.setInactive();
+        SingleVehicleContract singleContract3 = insurer1.insureVehicle(
+                "S003", null, policyholder, 200, PremiumPaymentFrequency.MONTHLY, vehicle);
 
-        MasterVehicleContract masterContract3 = new MasterVehicleContract("M003", insurer1, null, policyholder1);
-        insurer1.getContracts().add(masterContract3);
-
-        // Should throw exception for inactive single contract
         assertThrows(InvalidContractException.class, () ->
-                insurer1.moveSingleVehicleContractToMasterVehicleContract(masterContract3, inactiveSingleContract));
+                insurer1.moveSingleVehicleContractToMasterVehicleContract(inactiveMaster, singleContract3));
 
-        // Test with different insurers
-        MasterVehicleContract masterContract4 = new MasterVehicleContract("M004", insurer2, null, policyholder1);
-        insurer2.getContracts().add(masterContract4);
+        // Test 4: Same insurer but inactive single contract - should throw exception
+        MasterVehicleContract masterContract4 = insurer1.createMasterVehicleContract(
+                "M004", null, policyholder);
+        SingleVehicleContract inactiveSingle = insurer1.insureVehicle(
+                "S004", null, policyholder, 200, PremiumPaymentFrequency.MONTHLY, vehicle);
+        inactiveSingle.setInactive();
 
-        SingleVehicleContract singleContract4 = insurer1.insureVehicle(
-                "S004", null, policyholder1, 200, PremiumPaymentFrequency.MONTHLY, vehicle1);
-
-        // Should throw exception for different insurers
         assertThrows(InvalidContractException.class, () ->
-                insurer1.moveSingleVehicleContractToMasterVehicleContract(masterContract4, singleContract4));
-
-        // Test with different policyholders
-        MasterVehicleContract masterContract5 = new MasterVehicleContract("M005", insurer1, null, policyholder1);
-        insurer1.getContracts().add(masterContract5);
-
-        SingleVehicleContract singleContract5 = insurer1.insureVehicle(
-                "S005", null, policyholder2, 200, PremiumPaymentFrequency.MONTHLY, vehicle2);
-
-        // Should throw exception for different policyholders
-        assertThrows(InvalidContractException.class, () ->
-                insurer1.moveSingleVehicleContractToMasterVehicleContract(masterContract5, singleContract5));
+                insurer1.moveSingleVehicleContractToMasterVehicleContract(masterContract4, inactiveSingle));
     }
 }

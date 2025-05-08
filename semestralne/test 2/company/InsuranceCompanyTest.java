@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class InsuranceCompanyTest {
 
-    private final LocalDateTime testTime = LocalDateTime.of(2023, 1, 1, 0, 0);
+    LocalDateTime testTime = LocalDateTime.of(2023, 1, 1, 0, 0);
 
     @Test
     void testConstructorWithValidTime() {
@@ -366,9 +366,8 @@ public class InsuranceCompanyTest {
         Vehicle vehicle = new Vehicle("ABC123D", 10000);
 
         // Create master contract
-        MasterVehicleContract masterContract = new MasterVehicleContract(
-                "M001", company, null, legalEntity);
-        company.getContracts().add(masterContract);
+        MasterVehicleContract masterContract = company.createMasterVehicleContract(
+                "M001", null, legalEntity);
 
         // Create single vehicle contract
         SingleVehicleContract singleContract = company.insureVehicle(
@@ -426,9 +425,8 @@ public class InsuranceCompanyTest {
         Vehicle vehicle2 = new Vehicle("XYZ789B", 15000);
 
         // Create master contract
-        MasterVehicleContract masterContract = new MasterVehicleContract(
-                "M001", company, null, legalEntity);
-        company.getContracts().add(masterContract);
+        MasterVehicleContract masterContract = company.createMasterVehicleContract(
+                "M001", null, legalEntity);
 
         // Create single vehicle contracts
         SingleVehicleContract singleContract1 = company.insureVehicle(
@@ -484,9 +482,8 @@ public class InsuranceCompanyTest {
                 PremiumPaymentFrequency.MONTHLY, vehicle1);
 
         // Create master contract with a child contract
-        MasterVehicleContract masterContract = new MasterVehicleContract(
-                "M001", company, null, legalEntity);
-        company.getContracts().add(masterContract);
+        MasterVehicleContract masterContract = company.createMasterVehicleContract(
+                "M001", null, legalEntity);
 
         SingleVehicleContract childContract = company.insureVehicle(
                 "C001", null, legalEntity, 300,

@@ -15,9 +15,6 @@ public class Vehicle {
             if (!Character.isDigit(licensePlate.charAt(i)) && !Character.isUpperCase(licensePlate.charAt(i))) {
                 throw new IllegalArgumentException("License plate is not valid");
             }
-//            if (!(licensePlate.charAt(i)>='0' && licensePlate.charAt(i)<='9') && !(licensePlate.charAt(i)>='A' && licensePlate.charAt(i)<='Z')) {
-//                throw new IllegalArgumentException("License plate is not valid");
-//            }
         }
 
         this.licensePlate = licensePlate;

@@ -84,7 +84,7 @@ public class RoundingDownTests {
         );
 
         // Process claim with damage that's less than 70% of vehicle value
-        company.processClaim(smallContract, 3); // 3 is less than 70% of 5 (3.5)
+        company.processClaim(smallContract, 2); // 2 is less than 70% of 5 (3)
 
         // The contract should remain active
         assertTrue(smallContract.isActive(),

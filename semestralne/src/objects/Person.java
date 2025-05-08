@@ -4,6 +4,7 @@ import contracts.AbstractContract;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Person {
@@ -133,4 +134,16 @@ public class Person {
 
         this.paidOutAmount+=paidOutAmount;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        if (this.getId()==person.getId()) return true;
+        return id.equals(person.id);
+    }
+
+
 }

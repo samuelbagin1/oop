@@ -10,7 +10,8 @@ public abstract class AbstractVehicleContract extends AbstractContract {
     public AbstractVehicleContract(String contractNumber, InsuranceCompany insurer, Person beneficiary, Person policyHolder, ContractPaymentData contractPaymentData, int coverageAmount) {
         super(contractNumber, insurer, policyHolder, contractPaymentData, coverageAmount);
         // if (beneficiary == null) zmluva nemá oprávnenú osobu a prípadné poistné plnenie sa vypláca poistníkovi.
-        if (beneficiary==policyHolder) throw new IllegalArgumentException("beneficiary is same as policyHolder");
+        //if (beneficiary==policyHolder) throw new IllegalArgumentException("beneficiary is same as policyHolder");
+        if (beneficiary!=null && beneficiary.equals(policyHolder)) throw new IllegalArgumentException("beneficiary is same as policyHolder");
 
         this.beneficiary = beneficiary;
     }
@@ -20,10 +21,9 @@ public abstract class AbstractVehicleContract extends AbstractContract {
 
     // ----------- GET & SET ----------- //
     public void setBeneficiary(Person beneficiary) {
-        if (beneficiary==policyHolder) throw new IllegalArgumentException("beneficiary is same as policyHolder");
+        if (policyHolder.equals(beneficiary)) throw new IllegalArgumentException("beneficiary is same as policyHolder");
         this.beneficiary = beneficiary;
     }
-
     public Person getBeneficiary() {
         return beneficiary;
     }
