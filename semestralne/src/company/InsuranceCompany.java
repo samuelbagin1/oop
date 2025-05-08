@@ -9,6 +9,7 @@ import payment.PremiumPaymentFrequency;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class InsuranceCompany {
@@ -127,7 +128,7 @@ public class InsuranceCompany {
         if (!masterVehicleContract.isActive()) throw new InvalidContractException("masterVehicleContract is not active");
 
         if (!singleVehicleContract.getPolicyHolder().equals(masterVehicleContract.getPolicyHolder())) throw new InvalidContractException("Contracts must have the same policy holder");
-        if (singleVehicleContract.getInsurer()!=this || masterVehicleContract.getInsurer()!=this) throw new InvalidContractException("Contracts must belong to this insurance company");
+        if (!singleVehicleContract.getInsurer().equals(this) || !masterVehicleContract.getInsurer().equals(this)) throw new InvalidContractException("Contracts must belong to this insurance company");
 
         if (!getContracts().contains(masterVehicleContract)) throw new InvalidContractException("masterVehicleContract does not belong to this insurance company");
         if (!getContracts().contains(singleVehicleContract)) throw new InvalidContractException("singleVehicleContract does not belong to this insurance company");
@@ -179,10 +180,7 @@ public class InsuranceCompany {
         if (affectedPersons==null || affectedPersons.isEmpty()) throw new IllegalArgumentException("affectedPersons is null or empty");
 
         if (travelContract.getContractPaymentData()==null) throw new IllegalArgumentException("ContractPaymentData is null");
-        if (!travelContract.getInsuredPersons().containsAll(affectedPersons)) {
-            throw new IllegalArgumentException("Some affected persons are not insured");
-        }
-
+        if (!travelContract.getInsuredPersons().containsAll(affectedPersons)) throw new IllegalArgumentException("Some affected persons are not insured");
         if (!travelContract.isActive()) throw new InvalidContractException("travelContract is not active");
 
 
@@ -212,5 +210,11 @@ public class InsuranceCompany {
         }
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof InsuranceCompany that)) return false;
+        return Objects.equals(contracts, that.contracts) && Objects.equals(handler, that.handler) && Objects.equals(currentTime, that.currentTime);
+    }
 
 }

@@ -38,15 +38,9 @@ public class PaymentHandler {
     public void pay(MasterVehicleContract contract, int amount) {
         if (contract==null) throw new IllegalArgumentException("Contract cannot be null");
         if (amount<=0) throw new IllegalArgumentException("Amount cannot be less than 0");
-        if (contract.getChildContracts().isEmpty()) {
-            throw new InvalidContractException("Contract has no child contracts");
-        }
-        if (!contract.isActive()) {
-            throw new InvalidContractException("contract is not active");
-        }
-        if (contract.getInsurer()!=insurer) {
-            throw new InvalidContractException("Contract does not belong to this insurance company");
-        }
+        if (contract.getChildContracts().isEmpty()) throw new InvalidContractException("Contract has no child contracts");
+        if (!contract.isActive()) throw new InvalidContractException("contract is not active");
+        if (!contract.getInsurer().equals(insurer)) throw new InvalidContractException("Contract does not belong to this insurance company");
 
 
         int remainingAmount=amount;
@@ -104,7 +98,7 @@ public class PaymentHandler {
     public void pay(AbstractContract contract, int amount) {
         if (contract==null) throw new IllegalArgumentException("Contract cannot be null");
         if (amount<=0) throw new IllegalArgumentException("Amount cannot be less than 0");
-        if (contract.getInsurer()!=insurer) throw new InvalidContractException("Contract does not belong to this insurance company");
+        if (!contract.getInsurer().equals(insurer)) throw new InvalidContractException("Contract does not belong to this insurance company");
         if (!contract.isActive()) throw new InvalidContractException("Contract is not active");
 
         // ak este neexistuje zaznam o platbe, vytvorime ho
