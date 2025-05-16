@@ -6,7 +6,7 @@ import java.util.zip.ZipFile;
 
 public class Main {
     public static void main(String[] args) {
-        String pathToAssignment2 = "archiv.zip"; // sem treba doplnit cestu k archivu
+        String pathToAssignment2 = "zadanie.zip"; // sem treba doplnit cestu k archivu
                                               // obzvlast zvlastne by bolo, keby tato cesta existovala...
         try (ZipFile zipFile = new ZipFile(pathToAssignment2)) {
             String[] contents = zipFile
